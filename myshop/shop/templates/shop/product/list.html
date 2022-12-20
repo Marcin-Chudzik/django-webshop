@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section>
+    <div class="container">
+      <h2 class="my-4">{% if category %} {{ category.name }} {% else %} All products {% endif %}</h2>
+        <ul class="products-list">
+            {% for product in products %}
+                <div class="card">
+                    <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'shop/img/null.webp' %} {% endif %}"
+                         class="card-img-top" alt="{{ product.name }} image">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ product.name }}</h5>
+                      <p class="card-text">{{ product.description }}</p>
+                      <a href="{{ product.get_absolute_url }}" class="btn btn-sm btn-dark">Check details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock content %}
