@@ -3,10 +3,11 @@
 <nav class="navbar navbar-light bg-light navbar-expend-sm shadow-lg fixed-top">
     <div class="container">
         {% if categories %}
-        <img id="menuBtn" src="{% static 'shop/img/menu.webp' %}" alt="menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+        <img id="menuBtn" src="{% static 'shop/img/menu.webp' %}" alt="menu" data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
         {% endif %}
         <input id="searchBar" type="search" placeholder="Search...">
-        <h1 class="navbar-brand fs-1">SnapShop</h1>
+        <a class="fs-1 navbar-brand" href="{% url 'shop:product_list' %}">SnapShop</a>
     </div>
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
