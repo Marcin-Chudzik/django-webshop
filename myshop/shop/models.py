@@ -3,6 +3,17 @@ from django.urls import reverse
 
 
 class Category(models.Model):
+    """
+    A model representing a category of products.
+
+    Attributes:
+        name (str): The name of the category.
+        slug (str): The slugified version of the category name.
+
+    Methods:
+        __str__(): Returns the string representation of the category.
+        get_absolute_url(): Returns the URL of the category page.
+    """
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
@@ -19,6 +30,30 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """
+    Represents a product that is available for purchase in the online store.
+
+    Fields:
+        category (ForeignKey): The category that the product belongs to.
+        name (CharField): The name of the product.
+        slug (SlugField): The URL-friendly slug for the product.
+        image (ImageField): An image of the product.
+        description (TextField): A detailed description of the product.
+        price (DecimalField): The price of the product.
+        available (BooleanField): Indicates whether the product is currently available for purchase.
+        created (DateTimeField): The date and time the product was created.
+        updated (DateTimeField): The date and time the product was last updated.
+
+    Meta:
+        ordering (tuple): The default ordering for the model.
+        verbose_name (str): The singular name of the model.
+        verbose_name_plural (str): The plural name of the model.
+        index_together (tuple): Specifies the database indexes for the model.
+
+    Methods:
+        __str__(): Returns a string representation of the product.
+        get_absolute_url(): Returns the absolute URL for the product detail view.
+    """
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
@@ -31,6 +66,8 @@ class Product(models.Model):
 
     class Meta:
         ordering = ('name',)
+        verbose_name = 'product'
+        verbose_name_plural = 'products'
         index_together = (('id', 'slug'),)
 
     def __str__(self):
