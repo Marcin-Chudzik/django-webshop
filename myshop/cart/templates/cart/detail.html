@@ -8,18 +8,18 @@
 {% block content %}
   <div class="container">
     <h1>Products in the cart</h1>
-      <table class="table table-borderless my-5">
+      <table class="table my-5">
         <thead>
           <tr>
-            <th scope="col">Picture</th>
-            <th scope="col">Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Action</th>
-            <th scope="col">Price per item</th>
-            <th scope="col">Total price</th>
+            <th class="fs-5" scope="col">Product</th>
+            <th class="fs-5" scope="col">Name</th>
+            <th class="fs-5" scope="col">Quantity</th>
+            <th class="fs-5" scope="col">Action</th>
+            <th class="fs-5" scope="col">Price per item</th>
+            <th class="fs-5" scope="col">Total price</th>
           </tr>
         </thead>
-        <tbody class="table-group-divider">
+        <tbody class="table-group-divider align-middle">
           {% for item in cart %}
             {% with product=item.product %}
               <tr>
@@ -28,11 +28,11 @@
                     <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'shop/img/null.webp' %} {% endif %}" alt="image">
                   </a>
                 </td>
-                <td>{{ product.name }}</td>
-                <td>{{ item.quantity }}</td>
-                <td><a href="{% url 'cart:cart_remove' product.id %}">Delete</a></td>
-                <td>{{ item.price }} zł</td>
-                <td>{{ item.total_price }} zł</td>
+                <td class="fs-5">{{ product.name }}</td>
+                <td class="fs-5">{{ item.quantity }}</td>
+                <td class="fs-5"><a href="{% url 'cart:cart_remove' product.id %}">Delete</a></td>
+                <td class="fs-5">{{ item.price }} zł</td>
+                <td class="fs-5">{{ item.total_price }} zł</td>
               </tr>
             {% endwith %}
           {% endfor %}

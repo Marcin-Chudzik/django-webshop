@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block content %}
-<div class="container-fluid row gx-5 justify-content-center">
+<div class="container-fluid row gx-5 justify-content-center" xmlns="http://www.w3.org/1999/html">
   <img class="col-6 product-details-image justify-self-end" alt="product image"
        src="{% if product.image %}{{ product.image.url }} {% else %} {% static 'shop/img/null.webp' %} {% endif %}">
   <div class="col-6 justify-content-start">
@@ -14,7 +14,12 @@
     <a class="h3 link-primary" style="text-decoration: none;" href="{{ product.category.get_absolute_url }}">
       {{ product.category }}
     </a>
-    <p class="fs-3">{{ product.price }} PLN</p>
+    <p class="fs-3 my-4">{{ product.price }} PLN</p>
+    <form action="{% url 'cart:cart_add' product.id %}" method="post" class="d-flex align-items-center">
+      {{ cart_product_form }}
+      {% csrf_token %}
+      <button type="submit" class="btn btn-warning btn-md mx-3">Add to cart</button>
+    </form>
     <p class="fs-4">{{ product.description|linebreaks }}</p>
   </div>
 </div>

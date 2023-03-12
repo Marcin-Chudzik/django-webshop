@@ -7,7 +7,7 @@ html {
 }
 
 body {
-    margin-top: 120px;
+    margin: 120px;
 }
 
 footer {
@@ -90,4 +90,9 @@ footer .container {
 
 .product-details-image {
     max-width: 30%;
+}
+
+tr img {
+  width: auto;
+  height: 180px;
 }
