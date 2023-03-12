@@ -49,8 +49,9 @@ class Cart:
         products = Product.object.filter(id__in=product_ids)
         cart = self.cart.copy()
 
-        for products in products:
-            product = cart[str(product.id)['product']]
+        for product in products:
+            cart[str(product.id)]['product'] = product
+
         for item in cart.values():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price'] * item['quantity']
@@ -88,14 +89,14 @@ class Cart:
         Removes the product from the shopping cart.
         """
         product_id = str(product.id)
-        if product_id in self.cart:
+        if product_id is not None and product_id in self.cart:
             del self.cart[product_id]
             self.save()
 
-    def get_total_price(self):
+    def get_total_price(self) -> Decimal:
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
     def clear(self):
         # Remove the shopping cart from the current session.
-        del self.session[self.CART_SESSION_ID]
+        del self.session[settings.CART_SESSION_ID]
         self.save()
