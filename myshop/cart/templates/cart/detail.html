@@ -29,8 +29,20 @@
                   </a>
                 </td>
                 <td class="fs-5">{{ product.name }}</td>
-                <td class="fs-5">{{ item.quantity }}</td>
-                <td class="fs-5"><a href="{% url 'cart:cart_remove' product.id %}">Delete</a></td>
+                <td>
+                  <form action="{% url 'cart:cart_add' product.id %}" method="post" class="d-flex align-items-center">
+                    {{ item.update_quantity_form.quantity }}
+                    {{ item.update_quantity_form.update_quantity }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success btn-sm mx-1">CHANGE</button>
+                  </form>
+                </td>
+                <td class="fs-5">
+                  <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">DELETE</button>
+                  </form>
+                </td>
                 <td class="fs-5">{{ item.price }} zł</td>
                 <td class="fs-5">{{ item.total_price }} zł</td>
               </tr>
@@ -44,8 +56,8 @@
         </tbody>
       </table>
       <span class="d-flex justify-content-end">
-        <a href="{% url 'shop:product_list' %}" class="btn btn-dark btn-md mx-2" type="button">Continue shopping</a>
-        <a href="#" class="btn btn-warning btn-md" type="button">To checkout</a>
+        <a href="{% url 'shop:product_list' %}" class="btn btn-dark btn-md mx-2" type="button">CONTINUE SHOPPING</a>
+        <a href="#" class="btn btn-warning btn-md" type="button">TO CHECKOUT</a>
       </span>
   </div>
 {% endblock content %}
