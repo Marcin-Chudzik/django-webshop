@@ -1,0 +1,51 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+  My cart
+{% endblock title %}
+
+{% block content %}
+  <div class="container">
+    <h1>Products in the cart</h1>
+      <table class="table table-borderless my-5">
+        <thead>
+          <tr>
+            <th scope="col">Picture</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Action</th>
+            <th scope="col">Price per item</th>
+            <th scope="col">Total price</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {% for item in cart %}
+            {% with product=item.product %}
+              <tr>
+                <td>
+                  <a href="{{ product.get_absolute_url }}">
+                    <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'shop/img/null.webp' %} {% endif %}" alt="image">
+                  </a>
+                </td>
+                <td>{{ product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td><a href="{% url 'cart:cart_remove' product.id %}">Delete</a></td>
+                <td>{{ item.price }} zł</td>
+                <td>{{ item.total_price }} zł</td>
+              </tr>
+            {% endwith %}
+          {% endfor %}
+          <tr class="table-warning">
+            <td>Total price</td>
+            <td colspan="4"></td>
+            <td>{{ cart.get_total_price }} zł</td>
+          </tr>
+        </tbody>
+      </table>
+      <span class="d-flex justify-content-end">
+        <a href="{% url 'shop:product_list' %}" class="btn btn-dark btn-md mx-2" type="button">Continue shopping</a>
+        <a href="#" class="btn btn-warning btn-md" type="button">To checkout</a>
+      </span>
+  </div>
+{% endblock content %}

@@ -1,5 +1,13 @@
-{% extends "base.html" %}
+{% extends "shop/base.html" %}
 {% load static %}
+
+{% block title %}
+    {% if category %}
+    SnapShop - {{ category.name }}
+    {% else %}
+    SnapShop
+    {% endif %}
+{% endblock title %}
 
 {% block content %}
 <section>
