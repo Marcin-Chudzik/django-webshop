@@ -65,7 +65,6 @@ class Cart:
 
     def save(self) -> None:
         # Marks the session as "modified" to make sure it is saved.
-        print(self.session[settings.CART_SESSION_ID])
         self.session.modified = True
 
     def add(self, product: object, quantity: int = 1, update_quantity: bool = False) -> None:
