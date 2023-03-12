@@ -41,12 +41,12 @@ class Cart:
         self.session = request.session
         self.cart = self.session.get(settings.CART_SESSION_ID, {})
 
-    def __iter__(self, product):
+    def __iter__(self):
         """
         Iterates through the user's shopping cart and retrieves products from the database.
         """
         product_ids = self.cart.keys()
-        products = Product.object.filter(id__in=product_ids)
+        products = Product.objects.filter(id__in=product_ids)
         cart = self.cart.copy()
 
         for product in products:
@@ -65,6 +65,7 @@ class Cart:
 
     def save(self) -> None:
         # Marks the session as "modified" to make sure it is saved.
+        print(self.session[settings.CART_SESSION_ID])
         self.session.modified = True
 
     def add(self, product: object, quantity: int = 1, update_quantity: bool = False) -> None:
