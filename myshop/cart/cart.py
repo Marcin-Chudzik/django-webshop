@@ -39,7 +39,10 @@ class Cart:
 
     def __init__(self, request: SessionBase) -> None:
         self.session = request.session
-        self.cart = self.session.get(settings.CART_SESSION_ID, {})
+        cart = self.session.get(settings.CART_SESSION_ID)
+        if not cart:
+            cart = self.session[settings.CART_SESSION_ID] = {}
+        self.cart = cart
 
     def __iter__(self):
         """
