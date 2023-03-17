@@ -43,6 +43,16 @@ footer .container {
     height: 50px;
 }
 
+.cart-info-dropdown {
+    width: 300px;
+    height: 0px;
+    position: absolute;
+    top: 70px;
+    right: 270px;
+    display: none;
+    background-color: white;
+}
+
 .offcanvas {
     width: 300px;
 }
