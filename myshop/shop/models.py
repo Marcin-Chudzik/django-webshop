@@ -4,15 +4,20 @@ from django.urls import reverse
 
 class Category(models.Model):
     """
-    A model representing a category of products.
+    A model representing a category of products in the online shop.
 
     Attributes:
         name (str): The name of the category.
-        slug (str): The slugified version of the category name.
+        slug (str): A unique slug used in the URL to identify the category.
+
+    Meta:
+        ordering (tuple): The default ordering for the categories (by name).
+        verbose_name (str): The singular name of the category (for display purposes).
+        verbose_name_plural (str): The plural name of the category (for display purposes).
 
     Methods:
-        __str__(): Returns the string representation of the category.
-        get_absolute_url(): Returns the URL of the category page.
+        __str__(): Returns the string representation of the category (its name).
+        get_absolute_url(): Returns the URL of the page displaying the products in the category.
     """
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
