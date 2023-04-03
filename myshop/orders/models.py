@@ -57,7 +57,6 @@ class OrderItem(models.Model):
     Methods:
         __str__: Returns a string representation of the order item.
         get_cost: Calculates and returns the total cost of the order item.
-
     """
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
