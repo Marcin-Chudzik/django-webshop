@@ -3,6 +3,7 @@ from django.db import transaction
 from cart.cart import Cart
 from .models import OrderItem
 from .forms import OrderCreateForm
+from .tasks import order_created
 
 
 def order_create(request):
@@ -32,6 +33,8 @@ def order_create(request):
                 OrderItem.objects.bulk_create(order_items)
             # Deleting the products from the session cart.
             cart.clear()
+            # Running the asynchronous task for send email to the client.
+            order_created.delay(order.id)
             return render(request, 'orders/order/created.html', {'order': order})
     else:
         form = OrderCreateForm()
