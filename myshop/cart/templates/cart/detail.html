@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-  My cart
+  Cart | SnapShop
 {% endblock title %}
 
 {% block content %}
@@ -57,7 +57,7 @@
       </table>
       <span class="d-flex justify-content-end">
         <a href="{% url 'shop:product_list' %}" class="btn btn-dark btn-md mx-2" type="button">CONTINUE SHOPPING</a>
-        <a href="#" class="btn btn-warning btn-md" type="button">TO CHECKOUT</a>
+        <a href="{% url 'orders:order_create' %}" class="btn btn-warning btn-md" type="button">TO CHECKOUT</a>
       </span>
   </div>
 {% endblock content %}

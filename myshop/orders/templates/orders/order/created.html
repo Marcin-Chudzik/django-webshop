@@ -1,0 +1,12 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}
+    Thank you | SnapShop
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h1>Thanks!</h1>
+        <p>Order has been registered. Your order number is: <strong>{{ order.id }}</strong>.</p>
+    </div>
+{% endblock %}
