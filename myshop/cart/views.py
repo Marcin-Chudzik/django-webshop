@@ -16,7 +16,7 @@ def cart_detail(request):
 
 
 @require_http_methods(['POST'])
-def cart_add(request, product_id):
+def cart_add(request, product_id: int):
     """
     View function that adds a product to the cart and redirects to the cart detail page.
 
@@ -34,7 +34,7 @@ def cart_add(request, product_id):
 
 
 @require_http_methods(['POST'])
-def cart_remove(request, product_id):
+def cart_remove(request, product_id: int):
     """
     Removes a product from the session cart and redirects the user to the cart detail page.
 

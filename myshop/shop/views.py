@@ -20,7 +20,7 @@ def product_list(request, category_slug=None):
                   {'category': category, 'categories': categories, 'products': products})
 
 
-def product_detail(request, product_id, slug):
+def product_detail(request, product_id: int, slug):
     """
     View function that displays the details of a single product.
 
