@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+import braintree
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -139,3 +140,9 @@ CART_SESSION_ID = 'cart'
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Payments - Braintree
+BRAINTREE_ENVIRONMENT = braintree.Configuration.configure()
+BRAINTREE_MERCHANT_ID = os.getenv('BRAINTREE_MERCHANT_ID')
+BRAINTREE_PUBLIC_KEY = os.getenv('BRAINTREE_PUBLIC_KEY')
+BRAINTREE_PRIVATE_KEY = os.getenv('BRAINTREE_PRIVATE_KEY')
